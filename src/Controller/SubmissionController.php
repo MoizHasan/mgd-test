@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Mailer\Email;
 
 /**
  * Submission Controller
@@ -55,8 +56,16 @@ class SubmissionController extends AppController
             $submission = $this->Submission->patchEntity($submission, $this->request->data);
             $submission->birthdate = $date;
             if ($this->Submission->save($submission)) {
+                $email = new Email();
+                $email->profile('default');
+                $email
+                ->template('confirm', 'default')
+                ->emailFormat('html')
+                ->to('moizhasan51@gmail.com', 'User Data')
+                ->from('moizhasan51@gmail.com')
+                ->viewVars(['submission' => $submission])
+                ->send();
                 $this->Flash->success(__('Contact Info successfully submitted.'));
-
                 return $this->redirect(['action' => 'thankYou']);
                 
             } else {

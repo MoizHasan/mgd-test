@@ -28,7 +28,6 @@ $cakeDescription = 'MGD Programming Test';
 
     <?= $this->Html->css('style.css') ?>
     <?= $this->Html->css('pikaday/pikaday.css') ?>
-    <?= $this->Html->css('pikaday/site.css') ?>
     <?= $this->Html->css('pikaday/theme.css') ?>
     <?= $this->Html->css('pikaday/triangle.css') ?>
     
